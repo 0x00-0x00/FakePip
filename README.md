@@ -22,3 +22,7 @@ sudo /usr/bin/pip install . --upgrade --force-reinstall
 ### Then we get our shell back!
 ![Screenshot](img/004.JPG?raw=true)
 
+
+## Author
+This code is developed and maintained (if possible) by Andre Marques (@zc00l)
+Any misuse is not the author responsibility.
